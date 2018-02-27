@@ -303,7 +303,153 @@ function printAnagram(word){
 */
 
 
+// Exercise 8: Animal Hierarchy
 
+const animalHierarchy = [
+    {id: 'Animals', parent: null},
+    {id: 'Mammals', parent: 'Animals'},
+    {id: 'Dogs', parent:'Mammals' },
+    {id: 'Cats', parent:'Mammals' },
+    {id: 'Golden Retriever', parent: 'Dogs'},
+    {id: 'Husky', parent:'Dogs' },
+    {id: 'Bengal', parent:'Cats' }
+]
+
+// ==============================
+function traverse(animalHierarchy, parent) {
+    let node = {};
+    animalHierarchy.filter(item => item.parent === parent)
+                   .forEach(item => node[item.id] = traverse(animalHierarchy, item.id));
+    return node;  
+}
+
+/* Big O Complexity: 
+-This algorithm has a Exponential time complexity 0(2^n).
+-The algorithm is Exponential because for every index of the array the function calls itself once more due to the foreach and raises the input exponentially
+*/
+
+// Exercise 9 - Factorial
+
+function factorial(n) {  
+    // Base Case - when n is equal to 0, we stop the recursion
+    if (n === 0) {
+      return 1;
+    }
+    // This is our Recursive Case
+    // It will run for all other conditions except when n is equal to 0
+    return n * factorial(n - 1);
+  }
+
+  /* Big O Complexity: 
+-This algorithm has a linear time complexity 0(n).
+-The algorithm is linear because it's directly proportional to the size of the input.
+*/
+
+// Exercise 10 - Fibonacci
+
+function fibonacci(n) {
+    // Base case
+    if (n <= 0) {
+      return 0;
+    }
+    // Base case
+    if (n <= 2) {
+      return 1;
+    }	
+    // Recursive case
+    return fibonacci(n - 1) + fibonacci(n - 2);	
+  }
+
+ /* Big O Complexity: 
+-This algorithm has a polynomial time complexity 0(n^2).
+-The algorithm is polynomial because the function is calling itself twice which raises the input to the power of 2
+*/
+
+// Organization Chart
+
+let organization = {
+	"Zuckerberg": {		
+		"Schroepfer": {
+			"Bosworth": {
+				"Steve":{},
+				"Kyle":{},
+				"Andra":{}
+			},
+			"Zhao": {
+				"Richie":{},
+				"Sofia":{},
+				"Jen":{}
+			},
+			"Badros": {
+				"John":{},
+				"Mike":{},
+				"Pat":{}
+			},
+			"Parikh": {
+				"Zach":{},
+				"Ryan":{},
+				"Tes":{}
+			}
+		},
+		"Schrage": {
+			"VanDyck": {
+				"Sabrina":{},
+				"Michelle":{},
+				"Josh":{}
+			},
+			"Swain": {
+				"Blanch":{},
+				"Tom":{},
+				"Joe":{}
+			},
+			"Frankovsky": {
+				"Jasee":{},
+				"Brian":{},
+				"Margaret":{}
+			}
+		},
+		"Sandberg": {
+			"Goler": {
+				"Eddie":{},
+				"Julie":{},
+				"Annie":{}
+			},
+			"Hernandez": {
+				"Rowi":{},
+				"Inga":{},
+				"Morgan":{}
+			},
+			"Moissinac": {
+				"Amy":{},
+				"Chuck":{},
+				"Vinni":{}
+			},
+			"Kelley": {
+				"Eric":{},
+				"Ana":{},
+				"Wes":{}
+			}
+}}};
+
+function traverseA(data, depth = 0) {
+	let indent = " ".repeat(depth * 4);
+	Object.keys(data).forEach(key => {
+		console.log(indent + key);
+		traverseA(data[key], depth + 1)
+	});
+}
+
+function traverseB(node, indent=0) {
+	for (var key in node) {
+		console.log(" ".repeat(indent), key);
+		traverseB(node[key], indent + 4);
+	}
+}
+
+/* Big O Complexity: 
+-This algorithm has a Exponential time complexity 0(2^n)
+-The algorithm is Exponential because for every index of the array/key in object the function calls itself once more due to the foreach and raises the input exponentially
+*/
 
 
 
