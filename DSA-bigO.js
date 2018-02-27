@@ -195,7 +195,17 @@ function countSheep(num){
 -This algorithm has a Linear time complexity 0(n).
 -Scales the number of operations such as the console.log and countSHeep(num-1) with how big the num input is on the operations
 */
+//Exercise 1 - countSheep iterative
+function countSheepLoop(num){
+    for(let i=num; i>0; i--){
+        console.log(`counting sheeps ${i}`);
+    }
+}
+countSheepLoop(10);
 
+/* Big O Complexity: 
+-This algorithm has a Linear time complexity 0(n).
+*/
 
 //Exercise 2 - Array Double 
 function double_all(arr) {
@@ -210,7 +220,21 @@ function double_all(arr) {
 -Linearaly scales the number of recursive function calls based off of the size of the input, increasing the function stack to be returned during the backward phase.
 */
 
+//Exercise 2 - Array Double iterative
 
+function double_all(arr) {
+    var ret = Array(arr.length);
+    for (var i = 0; i < arr.length; ++i) {
+        ret[i] = arr[i] * 2;
+    }
+    return ret;
+}
+let arr = [10,4,5,2,1];
+console.log(double_all(arr));
+
+/* Big O Complexity: 
+-This algorithm has a Linear time complexity 0(n).
+*/
 
 //Exercise 3 - Reverse String
 function reverseString(str) {
@@ -224,6 +248,20 @@ function reverseString(str) {
 -Linearaly scales the number of recursive function calls based off of the size of the input, increasing the function stack to be returned during the backward phase.  For example, the number of times you slice through the string is linearaly dependent on how large the string input is.
 */
 
+//Exercise 3 - Reverse String iterative
+function reverse_tail(str) {
+    var accumulator = "";
+    while (str !== "") {
+    	accumulator = str[0] + accumulator;
+    	str = str.slice(1);
+    }
+    return accumulator;
+}
+
+/* Big O Complexity: 
+-This algorithm has a Linear time complexity 0(n).
+*/
+
 //Exercise 4 - Triangular Number
 function triangle(n) {
   if (n < 2) 
@@ -233,6 +271,17 @@ function triangle(n) {
 /* Big O Complexity: 
 -This algorithm has a Linear time complexity 0(n).
 -Scales with the input size for (n) in a linear fashion, so the amount of times traingle(n -1) is invoked recursively is dependent on that input size in a direct, linear correlation.
+*/
+//Exercise 4 - Triangular Number iterative
+function triangle(n) {
+    var tot = 0;
+    for (var i = 1; i <= n; ++i) {
+	    tot += n;
+    }
+    return tot;
+}
+ /* Big O Complexity: 
+-This algorithm has a Linear time complexity 0(n).
 */
 
 //Exercise 5 - String Splitter
@@ -258,6 +307,21 @@ function split(str, sep) {
 -Scales linearily with the string input size, because the recursive function call will continue to split the string relative to the input size as well.  
 */
 
+//Exercise 5 - String Splitter iterative
+function split(str, sep) {
+    var ret = [];
+    while (true) {
+        var idx = str.indexOf(sep);
+        if (idx == -1) break;
+	ret.push(str.slice(0, idx))
+	str = str.slice(idx + sep.length);
+    }
+    ret.push(str);
+    return ret;
+}
+
+/* Big O Complexity: 
+-This algorithm has a Linear time complexity 0(n).
 
 //Exercise 6 - Binary Representation
 Input: 25
@@ -278,6 +342,23 @@ function convertToBinary(num){
 -The algorithm is Logarithmic because it's constantly breaking itself down to more manageable inputs
 */
 
+//Exercise 6 - Binary Representation iterative
+function convertToBinaryIter(num){
+    var binary = '';
+    while(num>0){
+        let rem = Math.floor(num%2);
+        binary = rem + binary;
+        num = Math.floor(num/2);
+    }
+    return binary;
+
+
+}
+console.log(convertToBinaryIter(124)); //1111100
+
+/* Big O Complexity: 
+-This algorithm has a Logarithmic time complexity 0(log(n)).
+*/
 
 //Exercise 7 - Anagrams
 
@@ -298,10 +379,9 @@ function printAnagram(word){
   anagrams(' ', word);
 }
 /* Big O Complexity: 
--This algorithm has a Polynomial time complexity 0(n^2).
--The algorithm is polynomial because for every time the loop inside the function runs, it calls the function again and raises the input to the 2nd power.
+-This algorithm has a Factorial time complexity 0(n!).
+-The algorithm is Factorial because for every time the loop inside the function runs, it calls itself again which in turn runs another for loop and raises the input factorially.
 */
-
 
 // Exercise 8: Animal Hierarchy
 
@@ -324,8 +404,8 @@ function traverse(animalHierarchy, parent) {
 }
 
 /* Big O Complexity: 
--This algorithm has a Exponential time complexity 0(2^n).
--The algorithm is Exponential because for every index of the array the function calls itself once more due to the foreach and raises the input exponentially
+-This algorithm has a linear time complexity 0(n).
+-The algorithm is linear because the input for the function is limited to the length of the array.
 */
 
 // Exercise 9 - Factorial
@@ -345,6 +425,17 @@ function factorial(n) {
 -The algorithm is linear because it's directly proportional to the size of the input.
 */
 
+// Exercise 9 - Factorial iterative 
+function factorialIterative(number){
+    let fact = 1;
+    for (let i = 1; i <= number; i++){
+        fact *= i;
+    }
+    return fact;
+ }
+ console.log(factorialIterative(5));
+
+//  -This algorithm has a linear time complexity 0(n).
 // Exercise 10 - Fibonacci
 
 function fibonacci(n) {
@@ -361,9 +452,22 @@ function fibonacci(n) {
   }
 
  /* Big O Complexity: 
--This algorithm has a polynomial time complexity 0(n^2).
--The algorithm is polynomial because the function is calling itself twice which raises the input to the power of 2
+-This algorithm has a exponential time complexity 0(2^n).
+-The algorithm is exponential because the function is calling itself twice every run through.
 */
+// Exercise 10 - Fibonacci iterative
+function fibonacciIterative2(number){
+    let [num1, num2] = [1,0];
+    while(number-- > 0){
+        [num1, num2] = [num2+num1, num1]
+    }
+    return num2;
+
+}
+console.log(fibonacciIterative2(3));
+
+//   -This algorithm has a linear time complexity 0(n).
+//   -Because the loop executes as many times as the input allows. Compared to the recursion where we call the function within itself twice.
 
 // Organization Chart
 
@@ -447,18 +551,9 @@ function traverseB(node, indent=0) {
 }
 
 /* Big O Complexity: 
--This algorithm has a Exponential time complexity 0(2^n)
--The algorithm is Exponential because for every index of the array/key in object the function calls itself once more due to the foreach and raises the input exponentially
+-This algorithm has a linear time complexity 0(n)
+-The algorithm is linear because the input the limited so the loop is contained within that
 */
-
-
-
-
-
-
-
-
-
 
 
 
